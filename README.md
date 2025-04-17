@@ -1,10 +1,10 @@
-# PopShot  – A Real-Time Hand Gesture Game
+# 🧤 PopShot 🎯 – A Real-Time Hand Gesture Game
 
 **PopShot** is a real-time interactive game built using Python and OpenCV where players use hand gestures to pop bouncing sports balls like basketballs, tennis balls, and footballs on their webcam feed. It uses MediaPipe for hand tracking and integrates audio-visual feedback for an immersive gaming experience. This project is endless, progressively challenging, and designed for fun and learning.
 
 -----
 
-## How to Set Up and Run PopShot Locally
+## 🚀 How to Set Up and Run PopShot Locally
 
 Follow these steps to download, install dependencies, and run the game on your local machine:
 
@@ -56,7 +56,7 @@ python popshot.py
 
 -----
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 - **Python 3.x**
 - **OpenCV** – for computer vision and video feed handling
@@ -67,12 +67,13 @@ python popshot.py
 
 -----
 
-## About the Developer
+## 👨‍💻 About the Developer
 
 Hey! I'm a passionate developer interested in real-time interactive applications and computer vision. I love building engaging projects that mix creativity with technical skills. PopShot is one of my favorite projects that blends gaming with gesture-based control.
-Follow me via LinkedIn : https://www.linkedin.com/in/ishardeep-singh-743789311/
 
-> Feel free to connect or contribute to this project!
+LinkedIn : https://www.linkedin.com/in/ishardeep-singh-743789311/
+
+> 💬 Feel free to connect or contribute to this project!
 
 -----
 
@@ -84,4 +85,4 @@ This project is for educational and personal use. All media assets used (images 
 
 -----
 
-Enjoy popping! 
+Enjoy popping! 🎉
