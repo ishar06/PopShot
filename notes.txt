@@ -1,0 +1,209 @@
+# Importing important libraries
+import cv2  # Used to access your camera and display video (Computer Vision)
+import random  # Helps pick random values (like ball position)
+import numpy as np  # Powerful math library (used here for image blending)
+import mediapipe as mp  # Google's library to detect body parts (like hands)
+import pygame  # Used for playing sound
+import os  # Helps access files and folders
+
+# Setting up MediaPipe to detect hands
+mp_hands = mp.solutions.hands  # Using MediaPipe's hands module
+hands = mp_hands.Hands()  # Activates hand tracking
+mp_drawing = mp.solutions.drawing_utils  # Allows drawing landmarks (points) on screen
+
+# Initializing Pygame for sound
+pygame.mixer.init()
+pop_sound = pygame.mixer.Sound("pop.wav")  # Load the popping sound
+
+# Load ball images to show different types (like basketball, football)
+ball_images = []
+img_folder = "images"
+img_names = ["basketball.png", "tennis.png", "football.png"]
+for name in img_names:
+    path = os.path.join(img_folder, name)
+    img = cv2.imread(path, cv2.IMREAD_UNCHANGED)  # Read image with transparency
+    if img is not None:
+        img = cv2.resize(img, (80, 80))  # Resize to standard size
+        ball_images.append(img)  # Store in list
+
+# Open camera
+cap = cv2.VideoCapture(0)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)  # Set width of video
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)  # Set height
+
+# Game-related variables
+score = 0
+difficulty = 1
+MAX_BALLS = 5
+paused = False
+balls = []
+
+# Buttons for the game (Pause, Restart, Quit)
+button_height = 50
+button_width = 150
+button_padding = 20
+buttons = {
+    "Quit": (10, 5),
+    "Pause": (170, 5),
+    "Restart": (330, 5)
+}
+
+# Font settings (for button text)
+font = cv2.FONT_HERSHEY_DUPLEX
+try:
+    pygame.font.init()
+    font_poppins = pygame.font.Font("Poppins-SemiBold.ttf", 28)
+    poppins_available = True
+except:
+    poppins_available = False
+    font_poppins = None
+
+# Function to create a new bouncing ball
+def generate_ball(speed=2):
+    x = random.randint(150, 500)  # Random X-position
+    y = random.randint(150, 400)  # Random Y-position
+    radius = 40  # Ball size
+    dx = random.choice([-1, 1]) * speed  # X-direction speed
+    dy = random.choice([-1, 1]) * speed  # Y-direction speed
+    img = random.choice(ball_images)  # Random image
+    return [x, y, radius, dx, dy, img]
+
+# Detect fingertip using MediaPipe
+def detect_fingertip(frame):
+    rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)  # Convert to RGB
+    results = hands.process(rgb)  # Detect hand
+    if results.multi_hand_landmarks:
+        for hand_landmarks in results.multi_hand_landmarks:
+            mp_drawing.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+            fingertip = hand_landmarks.landmark[8]  # Index fingertip
+            x = int(fingertip.x * frame.shape[1])  # Convert to pixel position
+            y = int(fingertip.y * frame.shape[0])
+            return x, y
+    return None, None
+
+# Function to check if finger touched a ball
+def is_touched(fx, fy, bx, by, br):
+    if fx is None or fy is None:
+        return False
+    distance = ((fx - bx) ** 2 + (fy - by) ** 2) ** 0.5
+    return distance < br  # Return True if within the ball's radius
+
+# Draw the top buttons
+def draw_buttons(frame):
+    for label, (x, y) in buttons.items():
+        color = (30, 30, 30)
+        cv2.rectangle(frame, (x, y), (x + button_width, y + button_height), color, -1)
+        text = label
+        if poppins_available:
+            text_surface = font_poppins.render(text, True, (255, 255, 255))
+            frame[y + button_height//2 - text_surface.get_height()//2 : y + button_height//2 + text_surface.get_height()//2, x + 20 : x + 20 + text_surface.get_width()] = np.array(pygame.surfarray.pixels3d(text_surface))
+        else:
+            cv2.putText(frame, text, (x + 15, y + 30), font, 0.9, (255, 255, 255), 2)
+
+# Check if finger clicked on a button
+def check_button_click(x, y):
+    if x is None or y is None:
+        return None
+    for label, (bx, by) in buttons.items():
+        if bx <= x <= bx + button_width and by <= y <= by + button_height:
+            return label
+    return None
+
+# Function to place transparent image (ball) over frame
+def overlay_image(bg, overlay, x, y, radius):
+    if overlay.shape[2] == 4:  # Has alpha (transparency)
+        alpha = overlay[:, :, 3] / 255.0
+        overlay_resized = cv2.resize(overlay, (radius*2, radius*2))
+        for c in range(3):  # For each color channel
+            try:
+                bg[y-radius:y+radius, x-radius:x+radius, c] = (
+                    alpha * overlay_resized[:, :, c] +
+                    (1 - alpha) * bg[y-radius:y+radius, x-radius:x+radius, c]
+                )
+            except:
+                pass  # Skip if image overflows window
+
+# Main game loop
+while cap.isOpened():
+    ret, frame = cap.read()
+    if not ret:
+        break
+
+    frame = cv2.flip(frame, 1)  # Mirror the camera
+    height, width, _ = frame.shape
+
+    draw_buttons(frame)  # Draw Pause/Quit/Restart buttons
+
+    # Detect finger
+    fingertip_x, fingertip_y = detect_fingertip(frame)
+
+    # Detect simulated click from keyboard (optional)
+    click_x, click_y = None, None
+    if cv2.waitKey(1) & 0xFF == ord('c'):
+        click_x, click_y = width // 2, height // 2
+
+    # Check if finger or simulated click hit any button
+    trigger = check_button_click(fingertip_x, fingertip_y) or check_button_click(click_x, click_y)
+    if trigger == "Quit" or cv2.waitKey(1) & 0xFF == ord('q') or cv2.waitKey(1) & 0xFF == ord('1'):
+        break
+    elif trigger == "Pause" or cv2.waitKey(1) & 0xFF == ord('p') or cv2.waitKey(1) & 0xFF == ord('2'):
+        paused = not paused
+    elif trigger == "Restart" or cv2.waitKey(1) & 0xFF == ord('r') or cv2.waitKey(1) & 0xFF == ord('3'):
+        score = 0
+        difficulty = 1
+        balls = []
+        paused = False
+
+    if paused:
+        cv2.putText(frame, "PAUSED", (width // 2 - 100, height // 2),
+                    cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 100, 255), 3)
+        cv2.imshow("PopShot", frame)
+        continue
+
+    # Adjust number and speed of balls as score increases
+    desired_balls = min(1 + score // 30, MAX_BALLS)
+    speed = 2.5 + (score // 40) * 0.7
+
+    while len(balls) < desired_balls:
+        balls.append(generate_ball(speed))
+
+    new_balls = []
+    popped = 0
+
+    for ball in balls:
+        ball[0] += ball[3]  # Move ball in x-direction
+        ball[1] += ball[4]  # Move ball in y-direction
+
+        # Make balls bounce on walls
+        if ball[0] - ball[2] <= 0 or ball[0] + ball[2] >= width:
+            ball[3] *= -1
+        if ball[1] - ball[2] <= 0 or ball[1] + ball[2] >= height:
+            ball[4] *= -1
+
+        # If finger touches ball, remove it and play sound
+        if is_touched(fingertip_x, fingertip_y, ball[0], ball[1], ball[2]):
+            popped += 1
+            pop_sound.play()
+            continue
+        else:
+            new_balls.append(ball)
+
+        # Draw the ball on the frame
+        overlay_image(frame, ball[5], int(ball[0]), int(ball[1]), ball[2])
+
+    balls = new_balls
+    score += popped
+
+    # Show score
+    cv2.putText(frame, f"Score: {score}", (width - 250, 50),
+                cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 255, 0), 3)
+
+    cv2.imshow("PopShot", frame)
+
+    # Exit if ESC is pressed
+    if cv2.waitKey(1) & 0xFF == 27:
+        break
+
+# Release everything when done
+cap.release()
+cv2.destroyAllWindows()
