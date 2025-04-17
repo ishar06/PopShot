@@ -11,7 +11,7 @@ Follow these steps to download, install dependencies, and run the game on your l
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/popshot.git
+git clone https://github.com/ishar06/popshot.git
 cd popshot
 ```
 
