@@ -1,4 +1,4 @@
-Here’s a **concise summary** and **important points** for your MCQ exam on **Basic Models of Artificial Neural Networks** focusing on *Single-layer Feed-Forward Networks* and related concepts:
+ **Basic Models of Artificial Neural Networks** 
 
 ---
 
@@ -80,7 +80,7 @@ Here’s a **concise summary** and **important points** for your MCQ exam on **B
 ---
 ---
 ---
-Here’s a **simple and short explanation** of both **Incremental (Online) Training** and **Batch (Offline) Training**:
+ **Incremental (Online) Training** and **Batch (Offline) Training**:
 
 ---
 
@@ -118,7 +118,7 @@ Here’s a **simple and short explanation** of both **Incremental (Online) Train
 ---
 ---
 ---
-Here are **simple and clear answers** to your important questions about **Artificial Neural Networks (ANNs)**—great for MCQ revision or short-answer prep:
+**Artificial Neural Networks (ANNs)**—great for MCQ revision or short-answer prep:
 
 ---
 
@@ -207,7 +207,7 @@ Here are **simple and clear answers** to your important questions about **Artifi
 ---
 ---
 ---
-Here's a **summarized version** of your notes on **Convolutional Neural Networks (CNNs)** with **bolded key points** for quick review:
+**Convolutional Neural Networks (CNNs)** 
 
 ---
 
@@ -276,7 +276,7 @@ Apply **max pooling** over **2×2 regions**, output = max of each region.
 ---
 ---
 ---
-Here’s a **summarized version** of your notes on **Recurrent Neural Networks (RNNs)** with **key points bolded** for quick review:
+**Recurrent Neural Networks (RNNs)**
 
 ---
 
@@ -327,6 +327,51 @@ Here’s a **summarized version** of your notes on **Recurrent Neural Networks (
 - **Music Generation**
 - **Speech Recognition**
 - **Video Captioning**
+
+---
+---
+---
+**Radial Basis Function Network (RBFN)**:
+
+---
+
+**🔹 RBFN Overview:**  
+An **RBFN is a type of neural network** used mainly for **classification** and **function approximation**. It uses **nonlinear activation functions**, most commonly the **Gaussian kernel**.
+
+---
+
+**🔹 Gaussian Kernel & Properties:**  
+- **Gaussian functions** are radially symmetric, meaning the output depends only on the **distance** from a center, not the direction.  
+- The output is **positive**, peaking at the center and approaching **zero as distance increases**.
+
+---
+
+**🔹 Architecture:**  
+- **Two layers:**  
+  - **Hidden layer:** Applies **radial basis (Gaussian)** functions.  
+  - **Output layer:** Performs a **linear combination** of hidden layer outputs.  
+- The hidden units respond **strongly only to inputs close to their center**, making the network behave like a **localized receptive field** system.
+
+---
+
+**🔹 Training Process:**  
+1. **Initialize weights** randomly.  
+2. For each input:  
+   - Transmit input to hidden layer.  
+   - **Compute the RBF** using Euclidean distance from centers.  
+   - Select **centers and spread (σ)** from input vectors.  
+   - Compute hidden and final **outputs using weighted sums**.  
+3. **Adjust weights** based on error until the stopping condition is met.
+
+> Training combines **unsupervised learning** for the hidden layer (selecting centers) and **supervised learning** for the output layer.
+
+---
+
+**🔹 Applications:**  
+- **Pattern Recognition** (e.g., speech, image)  
+- **Time Series Prediction**  
+- **Adaptive Control Systems**  
+- **Medical Diagnosis**
 
 ---
 ---
