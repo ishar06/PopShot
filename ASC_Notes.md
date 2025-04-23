@@ -1,4 +1,4 @@
- **Basic Models of Artificial Neural Networks** 
+# **Basic Models of Artificial Neural Networks** 
 
 ---
 
@@ -80,7 +80,7 @@
 ---
 ---
 ---
- **Incremental (Online) Training** and **Batch (Offline) Training**:
+# **Incremental (Online) Training** and **Batch (Offline) Training**:
 
 ---
 
@@ -118,7 +118,7 @@
 ---
 ---
 ---
-**Artificial Neural Networks (ANNs)**—great for MCQ revision or short-answer prep:
+# **Artificial Neural Networks (ANNs)**—great for MCQ revision or short-answer prep:
 
 ---
 
@@ -207,7 +207,7 @@
 ---
 ---
 ---
-**Convolutional Neural Networks (CNNs)** 
+# **Convolutional Neural Networks (CNNs)** 
 
 ---
 
@@ -276,7 +276,7 @@ Apply **max pooling** over **2×2 regions**, output = max of each region.
 ---
 ---
 ---
-**Recurrent Neural Networks (RNNs)**
+# **Recurrent Neural Networks (RNNs)**
 
 ---
 
@@ -331,7 +331,7 @@ Apply **max pooling** over **2×2 regions**, output = max of each region.
 ---
 ---
 ---
-**Radial Basis Function Network (RBFN)**:
+# **Radial Basis Function Network (RBFN)**:
 
 ---
 
@@ -376,3 +376,129 @@ An **RBFN is a type of neural network** used mainly for **classification** and *
 ---
 ---
 ---
+# **McCulloch–Pitts (M–P) Neuron**:
+
+---
+
+### 🔹 **What is it?**
+The **McCulloch–Pitts neuron**, proposed in **1943**, is the **earliest model of an artificial neuron** used in neural networks. It's mainly used for simulating **simple logic functions**.
+
+---
+
+### 🔹 **Structure & Working:**
+- **Inputs**: Divided into:
+  - **Excitatory inputs** (positive weights)
+  - **Inhibitory inputs** (negative weights)
+- **Weights**: All excitatory inputs have the **same weight**, while inhibitory inputs suppress the neuron.
+- **Threshold (Ө)**: A **fixed value**. If the net input exceeds this threshold, the neuron **fires** (outputs 1); otherwise, it **doesn’t** (outputs 0).
+- **Binary output**: The neuron either **fires (1)** or **does not fire (0)** — no in-between.
+
+---
+
+### 🔹 **Key Firing Condition:**
+- Neuron fires **only if**:
+  - The **sum of excitatory inputs** is **≥ threshold**
+  - **No inhibitory input** is active
+
+> Example: If **k** excitatory inputs are active and **kw ≥ Ө**, the neuron fires.  
+> If fewer than k are active or any inhibitory input is active, it won't fire.
+
+---
+
+### 🔹 **Inhibition Conditions:**
+- **Weak absolute inhibition**: Total inhibitory effect must be considered.  
+  - Condition: `Ө > nw - P`
+- **Strong absolute inhibition**: Even a **single active inhibitor** blocks firing.  
+  - Condition: `Ө > nw - Pmin`
+
+---
+
+### 🔹 **Training?**
+- **No learning or training algorithm** exists.
+- You **manually set weights and threshold** to implement **logic gates** like AND, OR, NOT.
+
+---
+
+### 🔹 **Applications:**
+- Modeling **logic functions** in early neural networks
+- Foundation for modern neural networks
+
+---
+---
+---
+# Hebb Network and Hebbian Learning Rule**:
+
+---
+
+### 🔹 **What is Hebb Network?**
+- Proposed by **Donald Hebb in 1949**.
+- Based on the principle: **"Neurons that fire together, wire together."**
+- Strengthens connections between neurons **if they activate simultaneously**.
+
+---
+
+### 🔹 **Core Principle**
+- If input neuron **x** and output neuron **y** are active **together**, increase the **weight (w)** between them.
+- No significant change occurs if one fires and the other doesn’t.
+- **Unsupervised learning** – No error or target output used.
+
+---
+
+### 🔹 **Weight Update Rule**
+- **Mathematical form**:
+  \[
+  w_i = w_i + \eta \cdot x \cdot y
+  \]
+  where:
+  - \( w_i \): weight
+  - \( \eta \): learning rate
+  - \( x \): input
+  - \( y \): output
+
+---
+
+### 🔹 **Training Algorithm Steps**
+1. **Initialize weights** to zero: \( w_i = 0 \)
+2. For each input-output pair:
+   - Set input: \( x_i = s_j \)
+   - Set output: \( y = t \)
+   - **Update weights**: \( w_i^{new} = w_i^{old} + x_i \cdot y \)
+   - **Update bias**: \( b^{new} = b^{old} + y \)
+
+---
+
+### 🔹 **Vector Form Update**
+- \[
+  \Delta w = x \cdot y
+  \]
+- \[
+  w_{new} = w_{old} + \Delta w
+  \]
+
+---
+
+### 🔹 **Applications**
+- **Pattern Association**
+- **Pattern Classification**
+- **Pattern Categorization**
+- General **unsupervised learning tasks**
+
+---
+
+### 🔹 **Characteristics**
+- Simple and biologically inspired
+- No error correction involved
+- Works best with **bipolar data** (values like -1, +1)
+- Suitable for **associative learning tasks**
+
+---
+
+### 🔹 **Limitations**
+- **Unbounded weight growth** if no normalization or decay
+- Does **not decrease** weights even if input and output are anti-correlated
+- Needs enhancement (e.g., **Oja’s rule**) for stability and practical use
+
+---
+---
+---
+
