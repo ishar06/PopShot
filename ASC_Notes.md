@@ -273,6 +273,61 @@ Apply **max pooling** over **2×2 regions**, output = max of each region.
 - **Pooling layers** make CNNs **robust to spatial changes** (object position/rotation).
 - **Efficient** and **scalable** for high-resolution images.
 
-# ---
-# ---
-# ---
+---
+---
+---
+Here’s a **summarized version** of your notes on **Recurrent Neural Networks (RNNs)** with **key points bolded** for quick review:
+
+---
+
+### **What is an RNN?**
+- **Recurrent Neural Network (RNN)** is a type of **neural network designed for sequential data**.
+- It uses a **feedback mechanism** to maintain **hidden states (memory)** of previous inputs.
+- **Connections form directed cycles**, enabling RNNs to **“remember” context** from past steps.
+- Ideal for data types where **order and context matter**, such as **text, speech, time series, and video**.
+
+---
+
+### **How RNNs Work**
+- **Information is fed back** into the system after each time step.
+- Like reading a sentence: **each new word prediction depends on previous words**.
+- The **output of one step becomes the input for the next**, allowing the network to **retain context**.
+
+---
+
+### **Recurrent Unit**
+- **Core unit** of an RNN, holding a **hidden state**.
+- Maintains **memory** by **feeding back the hidden state**.
+- Captures **dependencies across time** in sequential data.
+
+---
+
+### **Unrolling (or Unfolding)**
+- Represents the **recurrent structure over time**.
+- Each step in the sequence is shown as a separate layer → easier to **visualize information flow**.
+
+---
+
+### **Backpropagation Through Time (BPTT)**
+- Special version of backpropagation adapted for RNNs.
+- **Errors are propagated through time** steps.
+- Helps adjust weights to **learn long-term dependencies** in sequences.
+
+---
+
+### **Weight Sharing**
+- Unlike traditional deep networks with separate weights per layer, **RNNs share weights** across time steps.
+- This design allows **consistent learning across sequences** and reduces complexity.
+
+---
+
+### **Applications**
+- **Natural Language Processing (NLP)**
+- **Time Series Forecasting**
+- **Music Generation**
+- **Speech Recognition**
+- **Video Captioning**
+
+---
+---
+---
