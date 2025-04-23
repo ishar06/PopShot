@@ -79,6 +79,7 @@ Here’s a **concise summary** and **important points** for your MCQ exam on **B
 
 ---
 ---
+---
 Here’s a **simple and short explanation** of both **Incremental (Online) Training** and **Batch (Offline) Training**:
 
 ---
@@ -115,3 +116,94 @@ Here’s a **simple and short explanation** of both **Incremental (Online) Train
 | Ideal for...           | Real-time, small datasets      | Large datasets, better accuracy |
 
 ---
+---
+---
+Here are **simple and clear answers** to your important questions about **Artificial Neural Networks (ANNs)**—great for MCQ revision or short-answer prep:
+
+---
+
+### 1️⃣ **What are the key components of an artificial neural network (ANN)?**
+
+- **Neurons (Nodes):** Basic units that process input and generate output.
+- **Layers:** 
+  - **Input Layer** – receives raw data.
+  - **Hidden Layer(s)** – do most of the processing.
+  - **Output Layer** – gives final prediction.
+- **Weights:** Determine the importance of inputs.
+- **Biases:** Extra values added to shift the output.
+- **Activation Functions:** Decide if a neuron should be activated.
+
+---
+
+### 2️⃣ **Explain the function of the input layer in an artificial neural network.**
+
+- Takes raw input data (like images, text, or numbers).
+- Passes the data to the next layer.
+- **Does not perform calculations** or apply activation.
+- No weights or biases—just acts as a **data carrier**.
+
+---
+
+### 3️⃣ **What role do weights play in the architecture of an ANN?**
+
+- Weights decide how important each input is.
+- Higher weight = more influence on the output.
+- Adjusted during training to **minimize error/loss**.
+- Core part of the learning process.
+
+---
+
+### 4️⃣ **How does the output layer differ from the hidden layers in an ANN?**
+
+- **Output Layer:** Produces the final result/prediction.
+- **Hidden Layers:** Intermediate processing, apply transformations to data.
+- Output layer often uses specific activations (e.g., softmax for classification).
+
+---
+
+### 5️⃣ **What is a single-layer artificial neural network (ANN), and how does its architecture differ from a multi-layer neural network?**
+
+- **Single-layer ANN:** Has only input and output layers.
+  - Simple and faster.
+  - Cannot solve complex problems.
+- **Multi-layer ANN:** Has one or more hidden layers.
+  - Can handle **non-linear** and **complex patterns**.
+
+---
+
+### 6️⃣ **How does a single-layer perceptron (SLP) work in terms of input, processing, and output?**
+
+1. Takes multiple inputs.
+2. Multiplies each by a weight and adds bias.
+3. Passes result through an activation function.
+4. **Produces one output** (e.g., 0 or 1 in binary classification).
+
+---
+
+### 7️⃣ **What is the role of weights and biases in a single-layer neural network?**
+
+- **Weights:** Scale the importance of each input.
+- **Bias:** Helps shift the activation function output.
+- Together they help the network learn the correct mapping from input to output.
+
+---
+
+### 8️⃣ **How does the activation function influence the output of a single-layer ANN?**
+
+- Introduces **non-linearity** to the output.
+- Decides whether the neuron should be **"fired" (activated)** or not.
+- Common examples: Sigmoid, ReLU, Step Function.
+- Helps the model learn complex patterns.
+
+---
+
+### 9️⃣ **What are the limitations of a single-layer neural network in solving complex problems?**
+
+- Can only solve **linearly separable** problems (e.g., AND, OR).
+- Fails for **non-linear** problems (e.g., XOR).
+- Lacks the depth to **extract complex features**.
+- That’s why multi-layer networks (like deep learning) are preferred for real-world tasks.
+
+---
+
+Let me know if you'd like these turned into flashcards or practice questions!
