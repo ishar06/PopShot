@@ -78,5 +78,40 @@ Here’s a **concise summary** and **important points** for your MCQ exam on **B
 - Maxnet → Used in competitive learning to pick strongest neuron.
 
 ---
+---
+Here’s a **simple and short explanation** of both **Incremental (Online) Training** and **Batch (Offline) Training**:
 
-Let me know if you’d like practice MCQs or flashcards for this!
+---
+
+### ✅ **Incremental Training / Online Training:**
+
+- The network **updates its weights after every single training example**.
+- **Each input → calculate output → compare with target → update weights immediately**.
+- Learns one step at a time, good for real-time or streaming data.
+- **Fast and easy to implement**, but can fluctuate more in learning.
+
+🧠 **Think of it like learning after every question** in a quiz.
+
+---
+
+### ✅ **Batch Training / Offline Training:**
+
+- The network sees the **entire training set (called an epoch)** first.
+- Then it **calculates the average error** from all examples.
+- Updates the weights **only once after the full pass**.
+- **More stable**, but **takes more memory and time**.
+
+🧠 **Think of it like studying all topics first, then correcting mistakes at once**.
+
+---
+
+### ⚖️ **Key Differences:**
+
+| Feature                | Incremental Training           | Batch Training                |
+|------------------------|--------------------------------|-------------------------------|
+| Updates after...       | Each example                   | Whole dataset (epoch)         |
+| Speed                  | Faster                         | Slower                        |
+| Stability              | Less stable (fluctuates)       | More stable                   |
+| Ideal for...           | Real-time, small datasets      | Large datasets, better accuracy |
+
+---
