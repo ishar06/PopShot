@@ -205,5 +205,74 @@ Here are **simple and clear answers** to your important questions about **Artifi
 - That’s why multi-layer networks (like deep learning) are preferred for real-world tasks.
 
 ---
+---
+---
+Here's a **summarized version** of your notes on **Convolutional Neural Networks (CNNs)** with **bolded key points** for quick review:
 
-Let me know if you'd like these turned into flashcards or practice questions!
+---
+
+### **What is a CNN?**
+- **CNN (Convolutional Neural Network)** is a type of **feed-forward deep learning model** mainly used for **image processing** tasks.
+- **Main Layers**:  
+  🔹 **Input Layer**  
+  🔹 **Convolutional Layer**  
+  🔹 **Pooling Layer**  
+  🔹 **Fully Connected Layer**  
+  🔹 **Output Layer**
+
+---
+
+### **1. Input Layer**
+- Takes in the **raw pixel values** of the image.
+- Each image pixel is a value (e.g., grayscale or RGB).
+
+---
+
+### **2. Convolutional Layer**
+- Contains **trainable filters (kernels)** that slide across the image.
+- Each filter produces a **feature map** using dot products.
+- Detects **visual patterns** like edges, shapes, textures.
+- **Filter size**: Typically smaller than image (e.g., 3×3).
+- **Output**: Set of 2D feature maps stacked into a volume.
+- **Input shape**: `n × n × p` (e.g., 5×5 grayscale → p=1; RGB → p=3)
+- **Filter shape**: `r × r × q`; result feature map size: `n − r + 1`.
+
+#### 🧠 **Example:**
+Applying a **3×3 edge detection kernel** over a **5×5 grayscale image**, results in a feature map by computing **dot products** region-wise.
+
+---
+
+### **3. Pooling Layer**
+- Reduces **spatial size** of feature maps → **less computation**, prevents **overfitting**.
+- Common method: **Max Pooling** (selects max value from region).
+- Pooling size (e.g., 2×2), **Stride** defines sliding step.
+- Output is a **smaller version** of input feature map, retaining important features.
+
+#### 🧠 **Example:**
+Apply **max pooling** over **2×2 regions**, output = max of each region.
+
+---
+
+### **4. Fully Connected Layer**
+- After multiple conv + pooling layers, **flatten output** into a vector.
+- Connects to standard neurons (like ANN).
+- Combines features for **final prediction**.
+
+---
+
+### **5. Output Layer**
+- Final prediction, e.g., **classification score**.
+- Number of neurons = **number of output classes**.
+
+---
+
+### ✅ **Why CNNs are better than ANN for image tasks**
+- **Automatically learn features** (edges, shapes, patterns) from raw images.
+- **No need for manual feature extraction**.
+- **Filters slide over image**, reducing parameters vs ANN.
+- **Pooling layers** make CNNs **robust to spatial changes** (object position/rotation).
+- **Efficient** and **scalable** for high-resolution images.
+
+# ---
+# ---
+# ---
