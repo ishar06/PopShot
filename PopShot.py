@@ -24,8 +24,7 @@ for name in img_names:
 
 cap = cv2.VideoCapture(0)
 
-# Increase camera resolution for better view
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)  # 1280x720 for better quality
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)  
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
 score = 0
@@ -34,21 +33,19 @@ MAX_BALLS = 5
 paused = False
 balls = []
 
-# Button positions and sizes
 button_height = 50
 button_width = 150
-button_padding = 20  # Added padding between score and buttons
+button_padding = 20  
 buttons = {
     "Quit": (10, 5),
     "Pause": (170, 5),
     "Restart": (330, 5)
 }
 
-# Font setup (Poppins Sans Serif if available)
 font = cv2.FONT_HERSHEY_DUPLEX
 try:
     pygame.font.init()  # Initialize Pygame font system
-    font_poppins = pygame.font.Font("Poppins-SemiBold.ttf", 28)  # Path to Poppins font
+    font_poppins = pygame.font.Font("Poppins-SemiBold.ttf", 28)  
     poppins_available = True
 except:
     poppins_available = False
