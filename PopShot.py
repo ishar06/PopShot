@@ -13,14 +13,13 @@ pygame.mixer.init()
 pop_sound = pygame.mixer.Sound("pop.wav")
 
 ball_images = []
-img_folder = "images"
-img_names = ["basketball.png", "tennis.png", "football.png"]
+img_folder = "img_folder"  
+img_names = ["ball1.png", "ball2.png", "ball3.png", "ball4.png"]  
 for name in img_names:
     path = os.path.join(img_folder, name)
     img = cv2.imread(path, cv2.IMREAD_UNCHANGED)
     if img is not None:
-        # Resize ball images for consistent display with high quality
-        img = cv2.resize(img, (80, 80))  # You can adjust the size if needed
+        img = cv2.resize(img, (80, 80))
         ball_images.append(img)
 
 cap = cv2.VideoCapture(0)
