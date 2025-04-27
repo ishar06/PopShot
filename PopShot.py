@@ -44,7 +44,7 @@ buttons = {
 
 font = cv2.FONT_HERSHEY_DUPLEX
 try:
-    pygame.font.init()  # Initialize Pygame font system
+    pygame.font.init()  
     font_poppins = pygame.font.Font("Poppins-SemiBold.ttf", 28)  
     poppins_available = True
 except:
