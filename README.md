@@ -2,6 +2,19 @@
 
 **PopShot** is a real-time interactive game built using Python and OpenCV where players use hand gestures to pop bouncing sports balls on their webcam feed. It uses MediaPipe for hand tracking and integrates audio-visual feedback for an immersive gaming experience. This project is endless, progressively challenging, and designed for fun and learning.
 
+
+---
+
+# 🛠️ Technologies Used
+
+- **Python 3.x**
+- **OpenCV** – for computer vision and video feed handling
+- **MediaPipe** – for real-time hand gesture detection
+- **Pygame** – for audio playback
+- **NumPy** – for numerical operations
+- **Virtual Environments** – for clean Python environment setup
+
+
 ---
 
 # 📜 Version Information
@@ -14,7 +27,6 @@
 | Power Mode Features         | Not available                                    | Power Mode allows bigger blast radius, faster popping    |
 | Stability and Speed         | Basic frame handling                             | Optimized frame reading and FPS smoothing                |
 | UI Enhancements             | Minimal                                           | Enhanced text and instruction overlays                  |
-| Sound and Visual Effects    | Basic pop sound                                  | Upgraded effects with better response                   |
 | Ball Images                 | Static 2-3 ball types                             | More polished ball types with different behaviors        |
 
 ---
@@ -38,6 +50,7 @@ If you don't have Python installed:
 - After installation, you may need to use `python3` and `pip3` instead of `python` and `pip`.
 
 To verify Python installation:
+Open the terminal of your computer and write the following command:
 ```bash
 python --version
 # or for Mac
@@ -50,6 +63,8 @@ python3 --version
 
 ```bash
 git clone https://github.com/ishar06/popshot.git
+```
+```bash
 cd popshot
 ```
 
@@ -58,7 +73,8 @@ cd popshot
 ```bash
 # Windows
 python -m venv venv
-
+```
+```bash
 # MacOS
 python3 -m venv venv
 ```
@@ -86,14 +102,21 @@ pip3 install -r requirements.txt
 ## 6. Add Sound and Image Assets
 
 - Place your sound file `pop.wav` in the project root or appropriate `sounds` folder.
-- Ensure ball images like `basketball.png`, `tennis.png`, `football.png` are inside the `images` folder.
+- Ensure ball images like `ball1.png`, `ball2.png`, `bomb.png` are inside the `img_folder` folder.
 
 ## 7. Run the Game
 
+- ### Version 1
 ```bash
-python popshot.py
+python PopShot.py
 # or for Mac
-python3 popshot.py
+python3 PopShot.py
+```
+- ### Version 1
+```bash
+python PopShot2.py
+# or for Mac
+python3 PopShot2.py
 ```
 
 > 🎥 Make sure your webcam is enabled before running the game!
@@ -111,24 +134,25 @@ python3 popshot.py
 
 ---
 
-# 🛠️ Technologies Used
+## 👨‍💻 About the Developer
 
-- **Python 3.x**
-- **OpenCV** – for computer vision and video feed handling
-- **MediaPipe** – for real-time hand gesture detection
-- **Pygame** – for audio playback
-- **NumPy** – for numerical operations
-- **Virtual Environments** – for clean Python environment setup
+I am **Ishardeep Singh**, a dedicated and passionate developer pursuing a specialization in **Computer Science and Artificial Intelligence**. I have a strong interest in building innovative, real-time interactive applications that combine **computer vision**, **AI**, and **user-centered design**.
 
----
+I specialize in **Python development**, with experience in frameworks such as **OpenCV**, **MediaPipe**, **Flask**, and **Django**, alongside a growing skillset in **web development technologies** like **HTML**, **CSS**, **JavaScript**, and the **MERN Stack**.  
+Through projects like **PopShot**, I aim to solve real-world problems while keeping the user experience intuitive, engaging, and technically robust.
 
-# 👨‍💻 About the Developer
+**Skills:**  
+- Programming Languages: Python, C, C++, JavaScript  
+- Technologies & Frameworks: OpenCV, MediaPipe, Flask, Django, React (beginner)  
+- Areas of Interest: Computer Vision, AI/ML, Full-Stack Web Development, Game Development  
+- Soft Skills: Public Speaking, Team Leadership, Project Management, Problem Solving
 
-Hey! I'm a passionate developer interested in real-time interactive applications and computer vision. I love building engaging projects that mix creativity with technical skills. PopShot is one of my favorite projects blending gaming with gesture-based control.
+**Contact Information:**  
+- 📬 **Email:** [singhishardeep06@gmail.com](mailto:singhishardeep06@gmail.com)  
+- 📄 **Resume:** [View My Resume](https://drive.google.com/file/d/1po4uWr4dNxJgwc0See9ZqO10V4kicWgy/view?usp=sharing)  
+- 🔗 **LinkedIn:** [Ishardeep Singh on LinkedIn](https://www.linkedin.com/in/ishardeep-singh-743789311/)
 
-🔗 LinkedIn : [https://www.linkedin.com/in/ishardeep-singh-743789311/](https://www.linkedin.com/in/ishardeep-singh-743789311/)
-
-> 💬 Feel free to connect or contribute to this project!
+> 🔍 I am actively seeking opportunities to contribute to exciting projects, internships, and roles that align with my passion for technology and innovation. Let's connect!
 
 ---
 
