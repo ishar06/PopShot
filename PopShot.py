@@ -54,7 +54,7 @@ except:
 def generate_ball(speed=2):
     x = random.randint(150, 500)
     y = random.randint(150, 400)
-    radius = 40  # fixed for consistent display
+    radius = 40  
     dx = random.choice([-1, 1]) * speed
     dy = random.choice([-1, 1]) * speed
     img = random.choice(ball_images)
@@ -80,7 +80,7 @@ def is_touched(fx, fy, bx, by, br):
 
 def draw_buttons(frame):
     for label, (x, y) in buttons.items():
-        # Create rounded rectangle button with padding
+        
         color = (30, 30, 30)
         cv2.rectangle(frame, (x, y), (x + button_width, y + button_height), color, -1)
         text = label
@@ -109,7 +109,7 @@ def overlay_image(bg, overlay, x, y, radius):
                     (1 - alpha) * bg[y-radius:y+radius, x-radius:x+radius, c]
                 )
             except:
-                pass  # Skip drawing if size overflows
+                pass  
 
 while cap.isOpened():
     ret, frame = cap.read()
@@ -119,13 +119,13 @@ while cap.isOpened():
     frame = cv2.flip(frame, 1)
     height, width, _ = frame.shape
 
-    # Draw UI with increased padding
+    
     draw_buttons(frame)
 
-    # Detect hand
+    
     fingertip_x, fingertip_y = detect_fingertip(frame)
 
-    # Simulated click
+    
     click_x, click_y = None, None
     if cv2.waitKey(1) & 0xFF == ord('c'):
         click_x, click_y = width // 2, height // 2
@@ -147,7 +147,7 @@ while cap.isOpened():
         cv2.imshow("PopShot", frame)
         continue
 
-    # Ball spawning logic
+    
     desired_balls = min(1 + score // 30, MAX_BALLS)
     speed = 2.5 + (score // 40) * 0.7  # slight increase in difficulty
 
@@ -161,13 +161,13 @@ while cap.isOpened():
         ball[0] += ball[3]
         ball[1] += ball[4]
 
-        # Bounce off walls
+        
         if ball[0] - ball[2] <= 0 or ball[0] + ball[2] >= width:
             ball[3] *= -1
         if ball[1] - ball[2] <= 0 or ball[1] + ball[2] >= height:
             ball[4] *= -1
 
-        # Check pop
+        
         if is_touched(fingertip_x, fingertip_y, ball[0], ball[1], ball[2]):
             popped += 1
             pop_sound.play()
@@ -181,7 +181,7 @@ while cap.isOpened():
     difficulty = 1 + score // 30
     balls = new_balls
 
-    # Stylish score display with a glow effect
+    
     cv2.putText(frame, f"Score: {score}", (20, 100 + button_padding),
                 cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 255, 0), 3)
     cv2.putText(frame, f"Balls: {len(balls)}", (20, 150 + button_padding),
@@ -189,7 +189,7 @@ while cap.isOpened():
 
     cv2.imshow("PopShot", frame)
 
-    # Avoid holding down the key for action, it now works on a single keypress
+    
     key = cv2.waitKey(1) & 0xFF
     if key == ord('q') or key == ord('1'):
         break
