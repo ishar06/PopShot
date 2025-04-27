@@ -23,7 +23,7 @@ for name in img_names:
         img = cv2.resize(img, (80, 80))
         ball_images.append(img)
 
-# Load bomb image
+
 bomb_path = os.path.join(img_folder, "bomb.png")
 bomb_img = cv2.imread(bomb_path, cv2.IMREAD_UNCHANGED)
 if bomb_img is not None:
@@ -33,7 +33,7 @@ cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
-# Game state variables
+
 score = 0
 high_score = 0
 difficulty = 1
@@ -42,21 +42,21 @@ paused = False
 game_over = False
 balls = []
 
-# Game mode variables
+
 NORMAL_MODE = "normal"
 POWER_MODE = "power"
 current_mode = NORMAL_MODE
 game_start_time = 0
-time_limit = 60  # Default 60 seconds for normal mode
+time_limit = 60 
 
-# Game state
+
 INSTRUCTIONS_STATE = "instructions"
 PLAYING_STATE = "playing"
 GAME_OVER_STATE = "game_over"
-CONFIRM_QUIT_STATE = "confirm_quit"  # New state for quit confirmation
+CONFIRM_QUIT_STATE = "confirm_quit"  
 game_state = INSTRUCTIONS_STATE
 
-# Button positions and sizes
+
 button_height = 50
 button_width = 200
 button_padding = 20
@@ -65,7 +65,7 @@ button_names = ["Quit", "Pause", "Restart", "Normal Mode", "Power Mode"]
 
 buttons = {}
 
-# Starting X and Y position
+
 start_x = 10
 start_y = 5
 
@@ -74,23 +74,22 @@ for index, name in enumerate(button_names):
     y = start_y
     buttons[name] = (x, y)
 
-# Confirmation buttons
+
 confirm_buttons = {
-    "Yes": (None, None),  # Will be initialized with proper coordinates later
-    "No": (None, None)    # Will be initialized with proper coordinates later
+    "Yes": (None, None),  
+    "No": (None, None)    
 }
 
-# Instructions screen buttons
+
 instruction_buttons = {}
 
-# Initialize width and height with default values
-# These will be updated once we get the first frame
+
 width, height = 1280, 720
 
-# Game over buttons will be initialized after we get the actual frame dimensions
+
 game_over_buttons = {}
 
-# Font setup
+
 font = cv2.FONT_HERSHEY_DUPLEX
 try:
     pygame.font.init()
@@ -107,24 +106,24 @@ def generate_ball(speed=2, include_bombs=False, force_normal=False):
     dx = random.choice([-1, 1]) * speed
     dy = random.choice([-1, 1]) * speed
     
-    # In power mode, there's a chance to spawn a bomb unless force_normal is True
+    
     is_bomb = False
-    if include_bombs and not force_normal and random.random() < 0.15 and bomb_img is not None:  # 15% chance for a bomb
+    if include_bombs and not force_normal and random.random() < 0.15 and bomb_img is not None:  
         img = bomb_img
         is_bomb = True
     else:
-        # Make sure we have ball images before trying to choose one
+        
         if ball_images:
             img = random.choice(ball_images)
         else:
-            # Fallback if no ball images are loaded
+            
             img = None
             print("Warning: No ball images loaded")
         
     return [x, y, radius, dx, dy, img, is_bomb]
 
 def detect_hand_gesture(hand_landmarks):
-    # Get finger landmarks
+    
     thumb_tip = hand_landmarks.landmark[4]
     index_tip = hand_landmarks.landmark[8]
     middle_tip = hand_landmarks.landmark[12]
@@ -157,10 +156,10 @@ def detect_fingertip(frame):
         for hand_landmarks in results.multi_hand_landmarks:
             mp_drawing.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
             
-            # Detect gestures
+            
             gesture = detect_hand_gesture(hand_landmarks)
             
-            # Get index fingertip for popping
+            
             fingertip = hand_landmarks.landmark[8]
             x = int(fingertip.x * frame.shape[1])
             y = int(fingertip.y * frame.shape[0])
@@ -179,7 +178,7 @@ def is_button_area(x, y, button_dict):
     if x is None or y is None:
         return False
     
-    # Add some padding around buttons
+    
     padding = 10
     
     for label, (bx, by) in button_dict.items():
@@ -190,10 +189,10 @@ def is_button_area(x, y, button_dict):
 
 def draw_buttons(frame, button_dict):
     for label, (x, y) in button_dict.items():
-        # Create rounded rectangle button with padding
+        
         color = (30, 30, 30)
         
-        # Highlight current mode button
+        
         if (label == "Normal Mode" and current_mode == NORMAL_MODE) or \
            (label == "Power Mode" and current_mode == POWER_MODE):
             color = (0, 100, 200)
@@ -206,7 +205,7 @@ def draw_buttons(frame, button_dict):
                 frame[y + button_height//2 - text_surface.get_height()//2 : y + button_height//2 + text_surface.get_height()//2, 
                       x + 20 : x + 20 + text_surface.get_width()] = np.array(pygame.surfarray.pixels3d(text_surface))
             except:
-                # Fallback if pygame surface can't be rendered
+                
                 cv2.putText(frame, text, (x + 15, y + 30), font, 0.9, (255, 255, 255), 2)
         else:
             cv2.putText(frame, text, (x + 15, y + 30), font, 0.9, (255, 255, 255), 2)
@@ -221,7 +220,7 @@ def check_button_click(x, y, button_dict):
 
 def overlay_image(bg, overlay, x, y, radius):
     if overlay is None or overlay.shape[2] < 3:
-        # Draw a colored circle as fallback if image is missing
+        
         cv2.circle(bg, (x, y), radius, (0, 255, 255), -1)
         return
         
@@ -235,9 +234,9 @@ def overlay_image(bg, overlay, x, y, radius):
                     (1 - alpha) * bg[y-radius:y+radius, x-radius:x+radius, c]
                 )
             except:
-                pass  # Skip drawing if size overflows
+                pass  
     else:
-        # For RGB images without alpha channel
+        
         try:
             overlay_resized = cv2.resize(overlay, (radius*2, radius*2))
             y_start = max(0, y-radius)
@@ -245,7 +244,7 @@ def overlay_image(bg, overlay, x, y, radius):
             x_start = max(0, x-radius)
             x_end = min(bg.shape[1], x+radius)
             
-            # Calculate the corresponding region in the overlay
+            
             overlay_y_start = max(0, radius - y)
             overlay_y_end = overlay_resized.shape[0] - max(0, y + radius - bg.shape[0])
             overlay_x_start = max(0, radius - x)
@@ -253,7 +252,7 @@ def overlay_image(bg, overlay, x, y, radius):
             
             bg[y_start:y_end, x_start:x_end] = overlay_resized[overlay_y_start:overlay_y_end, overlay_x_start:overlay_x_end]
         except:
-            # Fallback to a simple circle if overlay fails
+            
             cv2.circle(bg, (x, y), radius, (0, 255, 255), -1)
 
 def reset_game(mode=None):
@@ -270,11 +269,11 @@ def reset_game(mode=None):
     if mode:
         current_mode = mode
         
-    # Set time limit based on mode
+    
     if current_mode == NORMAL_MODE:
-        time_limit = 60  # 1 minute
-    else:  # POWER_MODE
-        time_limit = 90  # 90 seconds
+        time_limit = 60  
+    else: 
+        time_limit = 90  
 
 def draw_game_over_screen(frame, width, height):
     # Darken the background
