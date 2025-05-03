@@ -147,10 +147,14 @@ Through projects like **PopShot**, I aim to solve real-world problems while keep
 - Areas of Interest: Computer Vision, AI/ML, Full-Stack Web Development, Game Development  
 - Soft Skills: Public Speaking, Team Leadership, Project Management, Problem Solving
 
-**Contact Information:**  
-- 📧 **Email:** [singhishardeep06@gmail.com](mailto:singhishardeep06@gmail.com)  
-- 📄 **Resume:** [View My Resume](https://drive.google.com/file/d/1po4uWr4dNxJgwc0See9ZqO10V4kicWgy/view?usp=sharing)  
-- 🔗 **LinkedIn:** [https://www.linkedin.com/in/ishardeep-singh-743789311/](https://www.linkedin.com/in/ishardeep-singh-743789311/)
+
+### 📫 Contact & Links
+
+- 📧 Email: [singhishardeep06@gmail.com](mailto:singhishardeep06@gmail.com)
+- 💼 LinkedIn: [linkedin.com/in/ishardeep-singh-743789311](https://www.linkedin.com/in/ishardeep-singh-743789311)
+- 🌍 GitHub: [github.com/ishar06](https://github.com/ishar06)
+- 🪪 Resume: [Click here](https://drive.google.com/file/d/1po4uWr4dNxJgwc0See9ZqO10V4kicWgy/view?usp=sharing)
+
 
 > 🔍 I am actively seeking opportunities to contribute to exciting projects, internships, and roles that align with my passion for technology and innovation. Let's connect!
 
