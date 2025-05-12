@@ -589,7 +589,6 @@ while cap.isOpened():
     
     cv2.imshow("PopShot", frame)
     
-    # Handle key presses
     key = cv2.waitKey(1) & 0xFF
     if key == ord('q'):
         game_state = CONFIRM_QUIT_STATE
